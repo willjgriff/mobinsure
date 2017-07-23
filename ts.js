@@ -71,7 +71,7 @@ mobinsure.PRICE_CHECK_URL().then(cryptoCompare =>
 // 	.then(() => buyPolicy(0, "7", "unblocked"))
 // 	.then(() => utils.balances(2))
 
-makeClaim(1, "2", "blocked")
+makeClaim(0, "1", "blocked")
 	.then(() => utils.balances(2))
 
 
