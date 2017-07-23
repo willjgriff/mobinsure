@@ -3,7 +3,7 @@ var mobinsure = Mobinsure.at(Mobinsure.address)
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var utils = require("./utils.js")
 
-var policyValue = web3.toWei(0.1, 'ether');
+var policyValue = web3.toWei(0.007, 'ether') * 5;
 
 // Copied from some StackOverflow post.
 function httpGetAsync(theUrl, callback) {
@@ -53,6 +53,8 @@ var makeClaim = (fromAccount, imei, blockedStatus) =>
 var getOraclizeFee = () => mobinsure.getOraclizeFee()
 	.then(fee => console.log("Oraclize fee: " + fee))
 
+var contractBalance = () => console.log("Mobinsure contract balance: " + utils.balance(Mobinsure.address))
+
 // mobinsure.PRICE_CHECK_URL().then(cryptoCompare => 
 // 	mobinsure.PREMIUM_VALUE_GBP()
 // 		.then(premium => httpGetAsync("https://min-api.cryptocompare.com/data/price?fsym=GBP&tsyms=ETH", 
@@ -62,16 +64,24 @@ var getOraclizeFee = () => mobinsure.getOraclizeFee()
 // Note, it appears I do not understand indexed events properly so all the following tx's logs are called at once.
 // Keeps crashing when I use indexed logs.
 // UNCOMMENT THE BELOW TO TEST POLICY BUYING
-// utils.balances(2)
-// buyPolicy(0, "1", "unblocked")
-// 	.then(() => buyPolicy(1, "2", "unblocked"))
-// 	.then(() => buyPolicy(0, "3", "unblocked"))
-// 	.then(() => buyPolicy(1, "4", "unblocked"))
-// 	.then(() => utils.balances(2))
+utils.balances(2)
+contractBalance()
+buyPolicy(0, "1", "unblocked")
+	.then(() => buyPolicy(1, "2", "unblocked"))
+	.then(() => buyPolicy(0, "3", "unblocked"))
+	.then(() => buyPolicy(1, "4", "unblocked"))
+	.then(() => { 
+		utils.balances(2)
+		contractBalance()
+	})
 
 // UNCOMMENT THE BELOW TO TEST POLICY CLAIMING
-makeClaim(0, "1", "blocked")
-	.then(() => utils.balances(2))
+// contractBalance()
+// makeClaim(0, "1", "blocked")
+// 	.then(() => {
+// 		utils.balances(2)
+// 		contractBalance()
+// 	})
 
 
 module.exports = callback => {}

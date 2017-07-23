@@ -3,7 +3,7 @@
 // 'require' caches the js files not sure how to easily prevent this.
 
 // From truffle, REMEMBER TO CHANGE THE PORT! Could convert to an object...
-// var utils = require("../Utils/web3Utils.js")
+// var utils = require("./utils.js")
 
 var Web3 = require('web3')
 // Note we must change the web3 provider port when we change the testnet port.
