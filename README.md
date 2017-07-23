@@ -17,11 +17,13 @@ To test, uncomment buyPolicy() function calls and comment makeClaim() call. Exec
 <b>Necessary extensions</b><br>
 There are no free providers of the IMEI data that this system requires. In the full system we would require an incentivised policy value weighted voting mechanism for determining the IMEI data provider and a mechanism for allowing the IMEI data provider to take payment (payment also determined by vote). To bootstrap we would find an initial IMEI provider not voted in by policy holders.
 
-Currently only one policy is available. We should have multiple policies, one for each device. When buying policies, we should check the IMEI number to find the device and it's age and use this to determine and the premium / payout for the policy. The premium's and payout's should also be recalculated when policies are bought (for the next policy purchase) dependant on the balance in the contract and previous number of claims.
+Currently only one policy is available. We should have multiple policies, one for each device. When buying policies, we should check the IMEI number to find the device and it's age and use this to determine the premium and the payout for the policy. The premiums and payouts should also be recalculated when policies are bought (for the next policy purchase) dependant on the balance in the contract and previous number of claims.
 
 A user must pay ETH value of a GBP amount within a specified margin. Currently unimplemented due to difficulty getting the ETH value in WEI from the price checker. Could easily write a function to fix this in future.
 
 Integrate a way to change the price checker source incase it stops providing the data expected.
+
+The payout amount in ETH must be determined by cryptocompare by converting GBP to ETH.
 
 <b>Potential extensions</b><br>
 Integrate a governance / voting system which can dynamically add claiming methods.
