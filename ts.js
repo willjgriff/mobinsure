@@ -53,24 +53,23 @@ var makeClaim = (fromAccount, imei, blockedStatus) =>
 var getOraclizeFee = () => mobinsure.getOraclizeFee()
 	.then(fee => console.log("Oraclize fee: " + fee))
 
-mobinsure.PRICE_CHECK_URL().then(cryptoCompare => 
-	mobinsure.PREMIUM_VALUE_GBP()
-		.then(premium => httpGetAsync("https://min-api.cryptocompare.com/data/price?fsym=GBP&tsyms=ETH", 
-			response => console.log("£" + premium + " in Eth: " + ((JSON.parse(response).ETH) * premium)))))
+// mobinsure.PRICE_CHECK_URL().then(cryptoCompare => 
+// 	mobinsure.PREMIUM_VALUE_GBP()
+// 		.then(premium => httpGetAsync("https://min-api.cryptocompare.com/data/price?fsym=GBP&tsyms=ETH", 
+// 			response => console.log("£" + premium + " in Eth: " + ((JSON.parse(response).ETH) * premium)))))
 
 
 // Note, it appears I do not understand indexed events properly so all the following tx's logs are called at once.
 // Keeps crashing when I use indexed logs.
+// UNCOMMENT THE BELOW TO TEST POLICY BUYING
 // utils.balances(2)
 // buyPolicy(0, "1", "unblocked")
 // 	.then(() => buyPolicy(1, "2", "unblocked"))
 // 	.then(() => buyPolicy(0, "3", "unblocked"))
 // 	.then(() => buyPolicy(1, "4", "unblocked"))
-// 	.then(() => buyPolicy(0, "5", "unblocked"))
-// 	.then(() => buyPolicy(1, "6", "unblocked"))
-// 	.then(() => buyPolicy(0, "7", "unblocked"))
 // 	.then(() => utils.balances(2))
 
+// UNCOMMENT THE BELOW TO TEST POLICY CLAIMING
 makeClaim(0, "1", "blocked")
 	.then(() => utils.balances(2))
 

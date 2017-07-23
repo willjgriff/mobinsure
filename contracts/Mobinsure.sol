@@ -4,7 +4,7 @@ import { usingOraclize } from "./Oraclize.sol";
 import { OraclizeAddrResolverI } from "./Oraclize.sol";
 
 // Assumes a single policy for a single type of device for now. 
-// Imei data provider should be voted in with a policy value weighted vote during a pre-determined period.
+// Imei data provider should be voted in with an incentivised policy value weighted vote during a pre-determined period.
 contract Mobinsure is usingOraclize {
 
 	// These constants should be editable as the sources of data are likely to change. Changes should be 
@@ -17,7 +17,7 @@ contract Mobinsure is usingOraclize {
     uint public constant PREMIUM_VALUE_GBP = 5;
     // This should by dynamic dependant on the age of the device and a price check against a local currecny
     // (phone age can be determined by the Imei number)
-    uint public constant PAYOUT_VALUE = 0.01 ether;
+    uint public constant PAYOUT_VALUE = 0.08 ether; // roughly £15 which requires 3 policies before payout can be made.
     
     // See if we can reduce data usage here. Split up PolicyHolder perhaps
     mapping(string => PolicyHolder) private imeiPolicies;
