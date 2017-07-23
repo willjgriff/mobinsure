@@ -64,24 +64,24 @@ var contractBalance = () => console.log("Mobinsure contract balance: " + utils.b
 // Note, it appears I do not understand indexed events properly so all the following tx's logs are called at once.
 // Keeps crashing when I use indexed logs.
 // UNCOMMENT THE BELOW TO TEST POLICY BUYING
-utils.balances(2)
-contractBalance()
-buyPolicy(0, "1", "unblocked")
-	.then(() => buyPolicy(1, "2", "unblocked"))
-	.then(() => buyPolicy(0, "3", "unblocked"))
-	.then(() => buyPolicy(1, "4", "unblocked"))
-	.then(() => { 
-		utils.balances(2)
-		contractBalance()
-	})
-
-// UNCOMMENT THE BELOW TO TEST POLICY CLAIMING
+// utils.balances(2)
 // contractBalance()
-// makeClaim(0, "1", "blocked")
-// 	.then(() => {
+// buyPolicy(0, "1", "unblocked")
+// 	.then(() => buyPolicy(1, "2", "unblocked"))
+// 	.then(() => buyPolicy(0, "3", "unblocked"))
+// 	.then(() => buyPolicy(1, "4", "unblocked"))
+// 	.then(() => { 
 // 		utils.balances(2)
 // 		contractBalance()
 // 	})
+
+// UNCOMMENT THE BELOW TO TEST POLICY CLAIMING
+contractBalance()
+makeClaim(0, "1", "blocked")
+	.then(() => {
+		utils.balances(2)
+		contractBalance()
+	})
 
 
 module.exports = callback => {}
