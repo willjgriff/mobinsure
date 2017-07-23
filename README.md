@@ -9,17 +9,21 @@
 
 Once an IMEI is blocked, and the IMEI oracle will report this, the user can claim using ```makeClaim()``` which accepts the IMEI to determine the policy. It also accepts the current blocked status of the IMEI for demonstration purposes only, this would be got from the IMEI oracle in reality. Before making a payout it checks the IMEI policy is within its insured period then creates an Oraclize request to fetch the IMEI data to check it is now blocked, it then makes a payout to the account that made the policy and invalidates the policy for further claims. 
 
-<b>Example usage</b>
+<b>Example usage</b><br>
 Requires ```npm install``` to install web3 package to local dir. Then from a truffle console ```migrate``` to deploy the Mobinsure.sol contract.
 ts.js is a test script for interacting with the Truffle deployed contract. It includes a bunch of JS functions calling functions from the Mobinsure.sol contract and some commented example execution. 
 To test, uncomment buyPolicy() function calls and comment makeClaim() call. Execute in truffle console with ```exec ts.js```. Wait for the log statement that verifies the price check has been completed. Then comment buyPolicy() function calls and uncomment makeClaim() call, execute ts.js again to test claiming.
 
-
-
-<b>Necessary extensions:</b> There are no free providers of the IMEI data that this system requires. In the full system we would require an incentivised policy value weighted voting mechanism for determining the IMEI data provider and a mechanism for allowing the IMEI data provider to take payment (payment also determined by vote). To bootstrap we would find an initial IMEI provider not voted in by policy holders.
+<b>Necessary extensions</b><br>
+There are no free providers of the IMEI data that this system requires. In the full system we would require an incentivised policy value weighted voting mechanism for determining the IMEI data provider and a mechanism for allowing the IMEI data provider to take payment (payment also determined by vote). To bootstrap we would find an initial IMEI provider not voted in by policy holders.
 
 Currently only one policy is available. We should have multiple policies, one for each device. When buying policies, we should check the IMEI number to find the device and it's age and use this to determine and the premium / payout for the policy. The premium's and payout's should also be recalculated when policies are bought (for the next policy purchase) dependant on the balance in the contract and previous number of claims.
 
-<b>Potential extensions:</br> Integrate a governance / voting system which can dynamically add claiming methods. A bit farfetched perhaps, would require a lot of thought but probably possible.
+A user must pay ETH value of a GBP amount within a specified margin. Currently unimplemented due to difficulty getting the ETH value in WEI from the price checker. Could easily write a function to fix this in future.
+
+Integrate a way to change the price checker source incase it stops providing the data expected.
+
+<b>Potential extensions</b><br>
+Integrate a governance / voting system which can dynamically add claiming methods.
 
 For commit history see previous repo: https://github.com/willjgriff/hackathon-break-the-block/commits/master
