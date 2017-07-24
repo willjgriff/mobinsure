@@ -76,10 +76,11 @@ var contractBalance = () => console.log("Mobinsure contract balance: " + utils.b
 // 	})
 
 // UNCOMMENT THE BELOW TO TEST POLICY CLAIMING
+utils.balances(1)
 contractBalance()
 makeClaim(0, "1", "blocked")
 	.then(() => {
-		utils.balances(2)
+		utils.balances(1)
 		contractBalance()
 	})
 
